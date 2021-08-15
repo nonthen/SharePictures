@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -96,18 +96,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true" />
 
-        <TextView
-            android:id="@+id/tv_sign_up"
-            android:text="注册"
-            android:textColor="?attr/colorAccent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/cb_remember_pwd"
-            android:layout_marginEnd="8dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="8dp"
-            android:layout_alignParentRight="true" />
     </RelativeLayout>
 
 
@@ -126,6 +114,17 @@
             android:background="?attr/colorPrimary"
             android:text="登陆"
             android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/bt_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="109dp"
+            android:background="?attr/colorPrimary"
+            android:text="注册"
+            android:textColor="@android:color/white" />
+
     </RelativeLayout>
 
 </LinearLayout>

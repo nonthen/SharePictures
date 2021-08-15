@@ -3,6 +3,7 @@ package com.example.sharepictures;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -24,14 +25,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.loginactivity);//设置当前界面的样式
 
         final ImageView ivPwdSwitch = findViewById(R.id.iv_pwd_switch);//是否切换明文状态的格式
         etPwd = findViewById(R.id.et_pwd);//密码的形式
         etAccount = findViewById(R.id.et_account);//用户的账户名
         cbRememberPwd = findViewById(R.id.cb_remember_pwd);//记住密码的形式
         Button btLogin = findViewById(R.id.bt_login);//登陆按钮的形式
-        btLogin.setOnClickListener(this);//当前登陆活动设置一个监听事件,在点击登陆按钮的时候，将账户密码存储或者删掉
+
+        //当前登陆活动设置一个监听事件
+        btLogin.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {//点击登陆按钮之后，实现页面的跳转
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         String spFileName = getResources()//获取当前活动的文件名
                 .getString(R.string.shared_preferences_file_name);
