@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -21,6 +24,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText etPwd;//输入密码
     private EditText etAccount;//输入用户的账户名
     private CheckBox cbRememberPwd;//是否记住密码
+    private Database userdb;//创建一个数据库
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +36,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         etAccount = findViewById(R.id.et_account);//用户的账户名
         cbRememberPwd = findViewById(R.id.cb_remember_pwd);//记住密码的形式
         Button btLogin = findViewById(R.id.bt_login);//登陆按钮的形式
+        Button btSignup=findViewById(R.id.bt_signup);//注册账户的形式
+        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
 
         //当前登陆活动设置一个监听事件
         btLogin.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {//点击登陆按钮之后，实现页面的跳转
-                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
+
+                String userName=etAccount.getText().toString();//获取文本框的数据
+                String passWord=etPwd.getText().toString();
+
+                if (login(userName,passWord)){//登陆成功
+
+                    Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();//失败，弹出登陆失败
+                }
+
             }
         });
 
+        //为注册按钮添加一个监听事件
+        btSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//点击注册按钮之后，跳转到注册界面
+                Intent intent=new Intent(LoginActivity.this,SignupActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         String spFileName = getResources()//获取当前活动的文件名
@@ -135,4 +160,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
+
+    public boolean login(String username,String password) {//验证此账号密码是否正确
+        SQLiteDatabase db = userdb.getWritableDatabase();
+        String sql = "select * from userData where id=? and password=?";//将登录时填的账号和密码在数据库里面进行查询，如果存在该数据，则返回true，否则返回false
+        Cursor cursor = db.rawQuery(sql, new String[] {username, password});
+        if (cursor.moveToFirst()) {
+            cursor.close();
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
 }

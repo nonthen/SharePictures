@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/Password2"
+        style="@android:style/Widget.DeviceDefault.EditText"
+        android:layout_width="277dp"
+        android:layout_height="51dp"
+        android:ems="10"
+        android:hint="请确认密码"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/srpassword2"
+        app:layout_constraintTop_toBottomOf="@+id/NumberSignup"
+        app:layout_constraintVertical_bias="0.294" />
+
+    <TextView
+        android:id="@+id/srpassword2"
+        android:layout_width="133dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="再次确认密码"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.471"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/srpassword1"
+        android:layout_width="133dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="请输入密码"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.317"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/signup"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:gravity="center"
+        android:text="欢迎注册账户"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/zhanghao"
+        android:layout_width="133dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="请输入账号"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17"
+        tools:visibility="visible" />
+
+    <EditText
+        android:id="@+id/Password1"
+        style="@android:style/Widget.DeviceDefault.EditText"
+        android:layout_width="273dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:ems="10"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/Password2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/srpassword1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.798" />
+
+    <EditText
+        android:id="@+id/NumberSignup"
+        style="@android:style/Widget.DeviceDefault.EditText"
+        android:layout_width="273dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="请输入账号"
+        android:inputType="numberSigned"
+        app:layout_constraintBottom_toTopOf="@+id/srpassword1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/zhanghao"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginLeft="236dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Password2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/Password2"
+        app:layout_constraintTop_toTopOf="@+id/Password2"
+        app:layout_constraintVertical_bias="0.689"
+        app:srcCompat="@drawable/ic_baseline_visibility_off_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="32dp"
+        android:layout_height="28dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Password1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toEndOf="@+id/srpassword1"
+        app:layout_constraintTop_toTopOf="@+id/Password1"
+        app:layout_constraintVertical_bias="0.607"
+        app:srcCompat="@drawable/ic_baseline_visibility_off_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <Button
+        android:id="@+id/signupbutton"
+        android:layout_width="133dp"
+        android:layout_height="75dp"
+        android:text="注册"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="0.6" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

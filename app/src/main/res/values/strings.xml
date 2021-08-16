@@ -9,4 +9,5 @@
 <!--  获取登陆密码  -->
     <string name="login_remember_password">login_remember_password</string>
 <!--  获取是否记住密码  -->
+
 </resources>
