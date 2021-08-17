@@ -10,8 +10,8 @@
     <string name="login_remember_password">login_remember_password</string>
     <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_upload">Upload</string>
+    <string name="title_personal">Personal</string>
 
 
 </resources>
