@@ -25,7 +25,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_FORM);//执行创建表的语句
-        Toast.makeText(mContext,"表创建成功", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(mContext,"表创建成功", Toast.LENGTH_SHORT).show();
     }
 
     //在原来的软件上更新会从这里开始，不卸载在线更新（但在这里，没有设计对数据库中的表进行更新，所以下面这个方法直接为空）
