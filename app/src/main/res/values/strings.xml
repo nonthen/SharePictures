@@ -2,12 +2,16 @@
     <string name="app_name">SharePictures</string>
 
     <string name="shared_preferences_file_name">sp_login</string>
-<!--获取文件名 -->
+    <!--获取文件名 -->
     <string name="login_account_name">login_account_name</string>
-<!--  获取账户名  -->
+    <!--  获取账户名  -->
     <string name="login_password">login_password</string>
-<!--  获取登陆密码  -->
+    <!--  获取登陆密码  -->
     <string name="login_remember_password">login_remember_password</string>
-<!--  获取是否记住密码  -->
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 
 </resources>

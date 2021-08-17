@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_portrait_24.xml" value="0.19635416666666666" />
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.19635416666666666" />
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/layout/activity_bottom_navigation.xml" value="0.22" />
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/layout/fragment_home.xml" value="0.15534420289855072" />
         <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/layout/mainactivity.xml" value="0.16666666666666666" />
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18020833333333333" />
       </map>
     </option>
   </component>

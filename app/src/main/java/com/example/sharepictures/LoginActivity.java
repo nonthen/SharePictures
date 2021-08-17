@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.sharepictures.ui.home.HomeFragment;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Boolean bPwdSwitch = false;//判断密码是否可见,这里一开始默认密码不可见
@@ -50,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if (login(userName,passWord)){//登陆成功
 
-                    Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                    Intent intent=new Intent(LoginActivity.this, BottomNavigationActivity.class);
                     startActivity(intent);
                 }
                 else{
