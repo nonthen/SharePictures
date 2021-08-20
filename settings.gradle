@@ -1,2 +1,2 @@
 rootProject.name = "SharePictures"
-include ':app'
+include ':app','RxKit','RxUI'

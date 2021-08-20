@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sharepictures.ui.home.HomeFragment;
+import com.example.sharepictures.ui.personal.NotificationsFragment;
+
+import java.security.PublicKey;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -50,10 +53,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String userName=etAccount.getText().toString();//获取文本框的数据
                 String passWord=etPwd.getText().toString();
 
+                //当登陆成功了，强制保存到SharePreferences里面
+                String spFileName = getResources()//获取当前活动的文件名
+                        .getString(R.string.shared_preferences_file_name);
+                String accountKey = getResources()//用户的账号
+                        .getString(R.string.login_account_name);
+                String passwordKey =  getResources()//登陆密码
+                        .getString(R.string.login_password);
+                SharedPreferences spFile = getSharedPreferences(
+                        spFileName,
+                        Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = spFile.edit();
+                //将账户名和密码为一对，写入安卓自带的SharedPreferences文件里面
+                editor.putString(accountKey, userName);
+                editor.putString(passwordKey, passWord);
+                editor.apply();
+
                 if (login(userName,passWord)){//登陆成功
+
 
                     Intent intent=new Intent(LoginActivity.this, BottomNavigationActivity.class);
                     startActivity(intent);
+                    finish();//释放资源
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "登陆失败", Toast.LENGTH_SHORT).show();//失败，弹出登陆失败
@@ -72,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
 
+
         String spFileName = getResources()//获取当前活动的文件名
                 .getString(R.string.shared_preferences_file_name);
         String accountKey = getResources()//用户的账号
@@ -87,10 +109,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 MODE_PRIVATE);
         String account = spFile.getString(accountKey, null);
         String password = spFile.getString(passwordKey, null);
+
         Boolean rememberPassword = spFile.getBoolean(
                 rememberPasswordKey,
-                false);
+                false);//false是控制是否记住密码图标，这里表示不记住
 
+
+        //以下两个if是显示在对应的文本框，但是是否记住密码这个控件失效了
         if (account != null && !TextUtils.isEmpty(account)) {//读取到的账户名不能为空并且账户名框内不能为空
             etAccount.setText(account);
         }

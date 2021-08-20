@@ -27,9 +27,9 @@
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginBottom="4dp"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_baseline_person_24"/>
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_baseline_person_24" />
 
         <EditText
             android:id="@+id/et_account"

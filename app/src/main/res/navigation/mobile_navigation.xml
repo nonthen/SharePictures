@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_upload"
-        android:name="com.example.sharepictures.ui.dashboard.DashboardFragment"
+        android:name="com.example.sharepictures.ui.upload.DashboardFragment"
         android:label="@string/title_upload"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_personal"
-        android:name="com.example.sharepictures.ui.notifications.NotificationsFragment"
+        android:name="com.example.sharepictures.ui.personal.NotificationsFragment"
         android:label="@string/title_personal"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
