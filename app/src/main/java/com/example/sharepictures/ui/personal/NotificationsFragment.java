@@ -1,6 +1,7 @@
 package com.example.sharepictures.ui.personal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.sharepictures.BottomNavigationActivity;
 import com.example.sharepictures.LoginActivity;
 import com.example.sharepictures.R;
+import com.example.sharepictures.SignupActivity;
 import com.example.sharepictures.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {//这是个人信息
@@ -53,6 +55,15 @@ public class NotificationsFragment extends Fragment {//这是个人信息
 //            }
 //        });
 
+        binding.loginoutbutton.setOnClickListener(new View.OnClickListener(){//退出登陆
+
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(),LoginActivity.class);
+                startActivity(intent);
+                System.exit(0);//将活动销毁，只剩下一个登陆界面的活动
+            }
+        });
 
         return root;
     }

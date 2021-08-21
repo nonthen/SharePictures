@@ -18,19 +18,22 @@ import com.example.sharepictures.R;
 
 public class NotificationsViewModel extends ViewModel {
 
-//这里暂时不适用
-    private MutableLiveData<String> name;//在个人信息显示的账户名
+////这里暂时不适用
+//    private MutableLiveData<String> name;//在个人信息显示的账户名
+//
+//
+//    public NotificationsViewModel() {
+//
+//        name = new MutableLiveData<>();
+//        name.setValue("This is notifications fragment");
+//
+//    }
+//
+//    public LiveData<String> getName() {
+//
+//        return name;
+//    }
 
 
-    public NotificationsViewModel() {
 
-        name = new MutableLiveData<>();
-        name.setValue("This is notifications fragment");
-
-    }
-
-    public LiveData<String> getName() {
-
-        return name;
-    }
 }

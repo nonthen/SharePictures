@@ -14,8 +14,7 @@ import com.example.sharepictures.ui.personal.NotificationsFragment;
 
 public class BottomNavigationActivity extends AppCompatActivity {
 
-//    private String UserName;//用户名
-//    Intent intent = getIntent();//获取用户的用户名信息
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-//        PostUserName();//目的是用户一登陆，能够及时将用户名设置到个人信息界面
 
 //        BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -40,15 +38,5 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
     }
 
-//    public void PostUserName(){//将当前用户的账户名返回到个人信息界面
-//        UserName=intent.getStringExtra("userName");//此时账号由登陆的Activity传递到另一个Activity
-//
-//        //下面对数据进行传递，由Activity传递到Frament
-//        NotificationsFragment PersonFragment =new NotificationsFragment();//实例化个人信息界面的Fragment
-//        Bundle bundle=new Bundle();//实例化Bundle对象
-//        bundle.putString("Account",UserName);//将用户名数据存入到Bundle中
-//        PersonFragment.setArguments(bundle);//调用Fragment的setArguments方法，传入Bundle对象
-//
-//    }
 
 }

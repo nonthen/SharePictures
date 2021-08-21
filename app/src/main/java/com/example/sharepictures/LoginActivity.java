@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText etAccount;//输入用户的账户名
     private CheckBox cbRememberPwd;//是否记住密码
     private Database userdb;//创建一个数据库
+    private int temp;//是否记住密码的标志
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +55,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String userName=etAccount.getText().toString();//获取文本框的数据
                 String passWord=etPwd.getText().toString();
 
-                //当登陆成功了，强制保存到SharePreferences里面
-                String spFileName = getResources()//获取当前活动的文件名
-                        .getString(R.string.shared_preferences_file_name);
-                String accountKey = getResources()//用户的账号
-                        .getString(R.string.login_account_name);
-                String passwordKey =  getResources()//登陆密码
-                        .getString(R.string.login_password);
-                SharedPreferences spFile = getSharedPreferences(
-                        spFileName,
-                        Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = spFile.edit();
-                //将账户名和密码为一对，写入安卓自带的SharedPreferences文件里面
-                editor.putString(accountKey, userName);
-                editor.putString(passwordKey, passWord);
-                editor.apply();
 
                 if (login(userName,passWord)){//登陆成功
+
+                    //当登陆成功了，强制保存到SharePreferences里面
+                    String spFileName = getResources()//获取当前活动的文件名
+                            .getString(R.string.shared_preferences_file_name);
+                    String accountKey = getResources()//用户的账号
+                            .getString(R.string.login_account_name);
+                    String passwordKey =  getResources()//登陆密码
+                            .getString(R.string.login_password);
+                    SharedPreferences spFile = getSharedPreferences(
+                            spFileName,
+                            Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = spFile.edit();
+                    //将账户名和密码为一对，写入安卓自带的SharedPreferences文件里面
+                    editor.putString(accountKey, userName);
+                    editor.putString(passwordKey, passWord);
+                    editor.apply();
 
 
                     Intent intent=new Intent(LoginActivity.this, BottomNavigationActivity.class);
@@ -102,7 +105,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .getString(R.string.login_password);
         String rememberPasswordKey = getResources()//记住密码
                 .getString(R.string.login_remember_password);
-
         //在输入账户密码的时候，加载SharedPreferences中存储的用户账号信息
         SharedPreferences spFile = getSharedPreferences(
                 spFileName,
@@ -114,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 rememberPasswordKey,
                 false);//false是控制是否记住密码图标，这里表示不记住
 
-
+        //登陆成功后强制保存密码
         //以下两个if是显示在对应的文本框，但是是否记住密码这个控件失效了
         if (account != null && !TextUtils.isEmpty(account)) {//读取到的账户名不能为空并且账户名框内不能为空
             etAccount.setText(account);
@@ -122,9 +124,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (password != null && !TextUtils.isEmpty(password)) {//读取到的密码不能为空并且密码框内不能为空
             etPwd.setText(password);
+            cbRememberPwd.setChecked(!rememberPassword);//这里显示记住密码
         }
-
-        cbRememberPwd.setChecked(rememberPassword);//这里显示不记住密码
+        else{
+            cbRememberPwd.setChecked(rememberPassword);//第一次登陆的时候，显示不记住密码
+        }
 
 
         ivPwdSwitch.setOnClickListener(new View.OnClickListener() {//在切换密码是否可见的图标处，添加一个监听事件
@@ -153,40 +157,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
 
-        String spFileName = getResources()
-                .getString(R.string.shared_preferences_file_name);//当前活动的文件名
-        String accountKey = getResources()
-                .getString(R.string.login_account_name);//用户的账号
-        String passwordKey =  getResources()
-                .getString(R.string.login_password);//登陆密码
-        String rememberPasswordKey = getResources()
-                .getString(R.string.login_remember_password);//记住密码
-
-        SharedPreferences spFile = getSharedPreferences(
-                spFileName,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = spFile.edit();
-        //通过getSharedPreferences方法获得SharedPreferences对象，
-        // 并通过SharedPreferences.Editor进行编辑操作。
-
-        if (cbRememberPwd.isChecked()) {//当记住密码为真
-            String password = etPwd.getText().toString();//密码
-            String account = etAccount.getText().toString();//账户
-
-            //将账户名和密码为一对，写入安卓自带的SharedPreferences文件里面
-            editor.putString(accountKey, account);
-            editor.putString(passwordKey, password);
-            editor.putBoolean(rememberPasswordKey, true);
-            editor.apply();
-        } else {
-            //如果没有勾选记住密码，则将账户名和密码清除
-            editor.remove(accountKey);
-            editor.remove(passwordKey);
-            editor.remove(rememberPasswordKey);
-            editor.apply();
-        }
-
     }
+
+
 
     public boolean login(String username,String password) {//验证此账号密码是否正确
         SQLiteDatabase db = userdb.getWritableDatabase();
