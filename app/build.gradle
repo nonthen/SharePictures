@@ -43,8 +43,6 @@ dependencies {
     implementation 'com.github.tamsiree.RxTool:RxFeature:2.6.3'
     //ArcGis For Android工具库（API：100.1以上版本）
     implementation 'com.github.tamsiree.RxTool:RxArcGisKit:2.6.3'
-    //支付模块(支付宝 微信)[暂为待优化模块，谨慎]
-    implementation 'com.github.tamsiree.RxTool:RxPay:2.6.3'
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'

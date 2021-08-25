@@ -39,9 +39,8 @@ public class SignupActivity extends AppCompatActivity {
         etPwd1=findViewById(R.id.Password1);
         etPwd2=findViewById(R.id.Password2);
         Button btSignup=findViewById(R.id.signupbutton);//注册账户的形式
-        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
-
-
+//        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
+        userdb = new Database(this);
 
         //这是第一个控制密码是否可见
         ivPwdSwitch1.setOnClickListener(new View.OnClickListener() {//在切换密码是否可见的图标处，添加一个监听事件
@@ -146,7 +145,8 @@ public class SignupActivity extends AppCompatActivity {
             ContentValues values=new ContentValues();
             values.put("id",username);
             values.put("password",password1);
-            db.insert("userData",null,values);
+            values.put("touxiang","");//图片
+            db.insert("users",null,values);
             db.close();
             return true;
         }
@@ -154,7 +154,7 @@ public class SignupActivity extends AppCompatActivity {
     //检验用户名是否已存在
     public boolean CheckIsDataAlreadyInDBorNot(String value) {
         SQLiteDatabase db = userdb.getWritableDatabase();
-        String Query = "Select * from userData where id =?";
+        String Query = "Select * from users where id =?";
         Cursor cursor = db.rawQuery(Query, new String[]{value});
         if (cursor.getCount() > 0) {//用户存在
             cursor.close();

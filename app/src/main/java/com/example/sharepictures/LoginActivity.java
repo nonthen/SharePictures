@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText etAccount;//输入用户的账户名
     private CheckBox cbRememberPwd;//是否记住密码
     private Database userdb;//创建一个数据库
-    private int temp;//是否记住密码的标志
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         cbRememberPwd = findViewById(R.id.cb_remember_pwd);//记住密码的形式
         Button btLogin = findViewById(R.id.bt_login);//登陆按钮的形式
         Button btSignup=findViewById(R.id.bt_signup);//注册账户的形式
-        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
+//        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
+        userdb=new Database(this);
 
         //当前登陆活动设置一个监听事件
         btLogin.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +164,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public boolean login(String username,String password) {//验证此账号密码是否正确
         SQLiteDatabase db = userdb.getWritableDatabase();
-        String sql = "select * from userData where id=? and password=?";//将登录时填的账号和密码在数据库里面进行查询，如果存在该数据，则返回true，否则返回false
+        String sql = "select * from users where id=? and password=?";//将登录时填的账号和密码在数据库里面进行查询，如果存在该数据，则返回true，否则返回false
         Cursor cursor = db.rawQuery(sql, new String[] {username, password});
         if (cursor.moveToFirst()) {
             cursor.close();
