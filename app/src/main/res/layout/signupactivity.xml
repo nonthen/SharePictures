@@ -9,17 +9,17 @@
     <EditText
         android:id="@+id/Password2"
         style="@android:style/Widget.DeviceDefault.EditText"
-        android:layout_width="277dp"
+        android:layout_width="262dp"
         android:layout_height="51dp"
         android:ems="10"
         android:hint="请确认密码"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="@+id/srpassword2"
         app:layout_constraintTop_toBottomOf="@+id/NumberSignup"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.331" />
 
     <TextView
         android:id="@+id/srpassword2"
@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.471"
+        app:layout_constraintVertical_bias="0.578"
         tools:visibility="visible" />
 
     <TextView
@@ -50,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317"
+        app:layout_constraintVertical_bias="0.437"
         tools:visibility="visible" />
 
     <TextView
@@ -81,25 +81,24 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17"
+        app:layout_constraintVertical_bias="0.295"
         tools:visibility="visible" />
 
     <EditText
         android:id="@+id/Password1"
         style="@android:style/Widget.DeviceDefault.EditText"
-        android:layout_width="273dp"
-        android:layout_height="52dp"
+        android:layout_width="264dp"
+        android:layout_height="51dp"
         android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
         android:ems="10"
         android:hint="请输入密码"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/Password2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="@+id/srpassword1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.798" />
+        app:layout_constraintVertical_bias="0.871" />
 
     <EditText
         android:id="@+id/NumberSignup"
@@ -107,16 +106,16 @@
         android:layout_width="273dp"
         android:layout_height="57dp"
         android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="请输入账号"
         android:inputType="numberSigned"
         app:layout_constraintBottom_toTopOf="@+id/srpassword1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="@+id/zhanghao"
         app:layout_constraintTop_toBottomOf="@+id/signup"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.632" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -154,10 +153,27 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.763" />
+
+    <LinearLayout
+        android:layout_width="406dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="4dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/signupbutton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageButton
+            android:id="@+id/chooseimage"
+            android:layout_width="99dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:srcCompat="@android:drawable/ic_input_add" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

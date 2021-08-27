@@ -29,7 +29,7 @@ public class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        //创建一个用户表，里面有id为主键，密码不能为空，还用用户头像
+        //创建一个用户表，包括所有用户，里面有id，密码和头像
         db.execSQL("create table if not exists users"+
                 "(id text primary key," +
                 "password text not null,"+

@@ -1,22 +1,36 @@
 package com.example.sharepictures;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.example.sharepictures.ui.personal.NotificationsFragment;
+
+import java.io.ByteArrayOutputStream;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -26,7 +40,10 @@ public class SignupActivity extends AppCompatActivity {
     private EditText etPwd2;//输入确认密码
     private EditText etAccount;//输入用户的账户名
     private Database userdb;//创建一个数据库
-
+    private Button btSignup;
+    private ImageButton chooseImage;//创建一个用户头像
+    private byte[] image;//设置头像
+    private Bitmap bm;//选择头像的照片
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,7 +55,8 @@ public class SignupActivity extends AppCompatActivity {
         etAccount = findViewById(R.id.NumberSignup);//用户的账户名
         etPwd1=findViewById(R.id.Password1);
         etPwd2=findViewById(R.id.Password2);
-        Button btSignup=findViewById(R.id.signupbutton);//注册账户的形式
+        btSignup=findViewById(R.id.signupbutton);//注册账户的形式
+        chooseImage =findViewById(R.id.chooseimage);//选择头像的形式
 //        userdb=new Database(this,"Userss.db",null,1);//数据库的初始化
         userdb = new Database(this);
 
@@ -89,8 +107,24 @@ public class SignupActivity extends AppCompatActivity {
 
         });
 
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {//添加点击事件
+                //检测是否进行了授权
+                if (ContextCompat.checkSelfPermission(SignupActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
+                    ActivityCompat.requestPermissions(SignupActivity.this, new
+                            String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                } else {
+                    //打开系统相册
+                    Intent intent = new Intent(Intent.ACTION_PICK,
+                            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(intent, 1);//请求标识为1
+                }
 
+            }
+        });
 
         btSignup.setOnClickListener(new View.OnClickListener() {
 
@@ -107,7 +141,7 @@ public class SignupActivity extends AppCompatActivity {
                 }
                 else {
 
-                    if (register(account, password1,password2)) {
+                    if (register(account, password1,password2,image)) {
                         Toast.makeText(getApplicationContext(), "注册成功，即将返回登录界面", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(SignupActivity.this,LoginActivity.class);
                         startActivity(intent);
@@ -122,7 +156,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     //向数据库插入数据
-    public boolean register(String username,String password1,String password2){
+    public boolean register(String username,String password1,String password2,byte[] image){
 
         if (username.equals("")){
             Toast.makeText(getApplicationContext(),"账号名不能为空",Toast.LENGTH_SHORT).show();
@@ -145,7 +179,7 @@ public class SignupActivity extends AppCompatActivity {
             ContentValues values=new ContentValues();
             values.put("id",username);
             values.put("password",password1);
-            values.put("touxiang","");//图片
+            values.put("touxiang",image);
             db.insert("users",null,values);
             db.close();
             return true;
@@ -166,5 +200,38 @@ public class SignupActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //requestCode是用来标识请求的来源(这里是图片点击事件，标识为1）， resultCode是用来标识返回的数据来自哪一个activity
+        super.onActivityResult(requestCode, resultCode, data);
+        //获取图片路径
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            Uri selectedImage = data.getData();//选择照片
+            String[] filePathColumns = {MediaStore.Images.Media.DATA};//获取图片路径
+
+            Cursor c = getContentResolver().query(selectedImage, filePathColumns, null, null, null);
+            c.moveToFirst();//正确指向第一个位置
+            int columnIndex = c.getColumnIndex(filePathColumns[0]);
+            String imagePath = c.getString(columnIndex);
+            showImage(imagePath);
+            c.close();
+        }
+
+    }
+
+    private void showImage(String imagePath) {
+
+        bm = BitmapFactory.decodeFile(imagePath);//通过BitmapFactory.decodeFile(imagePath)方法来加载图片
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();//字符串输出流
+        //三个参数分别是压缩后的图像的格式（png），图像显示的质量（0—100），100表示最高质量，图像处理的输出流（baos）。
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        image = baos.toByteArray();//接收读取到的字符，即图片的路径
+        chooseImage.setImageBitmap(bm);//设置头像
+
+    }
+
+
+
 
 }
