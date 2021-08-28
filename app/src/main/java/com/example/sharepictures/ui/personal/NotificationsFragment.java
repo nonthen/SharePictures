@@ -1,46 +1,23 @@
 package com.example.sharepictures.ui.personal;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.SavedStateHandle;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.sharepictures.BottomNavigationActivity;
 import com.example.sharepictures.Database;
 import com.example.sharepictures.LoginActivity;
 import com.example.sharepictures.R;
-import com.example.sharepictures.SignupActivity;
 import com.example.sharepictures.databinding.FragmentNotificationsBinding;
-
-import java.io.ByteArrayOutputStream;
 
 public class NotificationsFragment extends Fragment {//这是个人信息
 
@@ -84,8 +61,6 @@ public class NotificationsFragment extends Fragment {//这是个人信息
             binding.ivTouxiang.setImageBitmap(imagebm);
 
         }
-//        binding.ivTouxiang.setImageBitmap(bmshow);
-
 
         binding.loginoutbutton.setOnClickListener(new View.OnClickListener(){//退出登陆
 

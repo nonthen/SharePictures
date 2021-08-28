@@ -6,17 +6,111 @@
     android:layout_height="match_parent"
     tools:context=".ui.upload.DashboardFragment">
 
-    <TextView
-        android:id="@+id/text_dashboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="413dp"
+        android:layout_height="127dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/ic_baseline_photo_camera_24" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/pictureid"
+        android:layout_width="106dp"
+        android:layout_height="49dp"
+        android:gravity="center"
+        android:text="编号"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.053" />
+
+    <EditText
+        android:id="@+id/PictureId"
+        android:layout_width="289dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="请输入发布者编号"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/pictureid"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.054" />
+
+    <TextView
+        android:id="@+id/picturesdetails"
+        android:layout_width="106dp"
+        android:layout_height="49dp"
+        android:gravity="center"
+        android:text="图片详情"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pictureid"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="399dp"
+        android:layout_height="250dp"
+
+        android:scrollbarThumbVertical="@drawable/ic_baseline_crop_portrait_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/picturesdetails"
+        app:layout_constraintVertical_bias="0.034">
+
+        <EditText
+            android:id="@+id/PicturesDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="请描述图片"
+            android:textSize="24dp">
+
+        </EditText>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="215dp"
+        android:layout_height="72dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.681">
+
+        <Button
+            android:id="@+id/fabu"
+            android:layout_width="215dp"
+            android:layout_height="72dp"
+            android:text="发布图片"
+            android:textSize="26dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
