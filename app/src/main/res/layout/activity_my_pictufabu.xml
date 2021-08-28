@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="98dp"
+        android:layout_height="138dp"
+        android:src="@drawable/ic_fab" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/userid"
+            android:layout_width="271dp"
+            android:layout_height="47dp"
+            android:gravity="center_vertical"
+            android:text="发布者"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/itemdetails"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:textSize="23dp"
+            android:textColor="#000000"
+            android:gravity="center_vertical"
+            android:text="图片详情"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

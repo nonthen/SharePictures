@@ -72,6 +72,7 @@ public class DashboardFragment extends Fragment {//发布照片
             public void onClick(View view) {
 
                 ContentValues values=new ContentValues();//储存图片信息
+
                 values.put("idnum",binding.PictureId.getText().toString());
                 values.put("details",binding.PicturesDetails.getText().toString());
                 values.put("pictures",imagedata);
