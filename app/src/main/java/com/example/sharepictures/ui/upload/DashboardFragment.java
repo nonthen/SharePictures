@@ -75,6 +75,7 @@ public class DashboardFragment extends Fragment {//发布照片
 
                 values.put("idnum",binding.PictureId.getText().toString());
                 values.put("details",binding.PicturesDetails.getText().toString());
+                values.put("likes",0);
                 values.put("pictures",imagedata);
 
                 db.insert("picturestable",null,values);

@@ -21,7 +21,6 @@ import com.example.sharepictures.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {//这是个人信息
 
-    private NotificationsViewModel notificationsViewModel;
     private FragmentNotificationsBinding binding;
     private Database dbbase;
     private SQLiteDatabase db;
@@ -32,8 +31,7 @@ public class NotificationsFragment extends Fragment {//这是个人信息
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-//        notificationsViewModel =
-//                new ViewModelProvider(this).get(NotificationsViewModel.class);
+
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
 

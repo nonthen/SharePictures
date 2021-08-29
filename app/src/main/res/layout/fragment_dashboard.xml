@@ -47,7 +47,7 @@
         android:layout_height="54dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="发布者账号"
+        android:text=""
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

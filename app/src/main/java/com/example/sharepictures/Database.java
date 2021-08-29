@@ -35,10 +35,11 @@ public class Database extends SQLiteOpenHelper {
                 "password text not null,"+
                 "touxiang blob)");
 
-        //创建一个图片表，存储图片,发布图片者的id，详细信息，以及图片
+        //创建一个图片表，存储图片,图片的id，详细信息，是否喜欢，以及图片
         db.execSQL("create table if not exists picturestable"+
                 "(idnum text ,"+
                 "details text,"+
+                "likes int,"+
                 "pictures blob)");
 
         Toast.makeText(mContext,"数据库和表创建成功", Toast.LENGTH_SHORT).show();

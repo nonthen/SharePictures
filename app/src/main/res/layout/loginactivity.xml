@@ -73,11 +73,11 @@
             android:id="@+id/iv_pwd_switch"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginBottom="6dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/ic_baseline_visibility_off_24"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="6dp"
+            android:src="@drawable/ic_baseline_visibility_off_24" />
     </RelativeLayout>
 
     <RelativeLayout

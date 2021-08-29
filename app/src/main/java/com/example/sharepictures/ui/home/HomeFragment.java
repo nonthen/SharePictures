@@ -1,5 +1,6 @@
 package com.example.sharepictures.ui.home;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -19,6 +21,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sharepictures.Database;
+import com.example.sharepictures.ImagesDetails;
 import com.example.sharepictures.R;
 import com.example.sharepictures.databinding.FragmentHomeBinding;
 
@@ -55,7 +58,7 @@ public class HomeFragment extends Fragment {//这是主页
                 item = new HashMap<String, Object>();  // 为列表项赋值
                 item.put("idnum",cursor.getString(0));
                 item.put("details",cursor.getString(1));
-                imagedata = cursor.getBlob(2);
+                imagedata = cursor.getBlob(3);
                 imagebm = BitmapFactory.decodeByteArray(imagedata, 0, imagedata.length);
                 item.put("pictures",imagebm);
                 cursor.moveToNext();
@@ -79,6 +82,18 @@ public class HomeFragment extends Fragment {//这是主页
         });
         binding.listView.setAdapter(simpleAdapter);
 
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener()  {//点击图片界面，跳转到图片详情
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(HomeFragment.this.getActivity(), ImagesDetails.class);
+                // 获取该列表项的key为id的键值，即发布者的id，将其储存在Bundle传递给打开的页面
+                intent.putExtra("id", data.get(i).get("idnum").toString());
+                startActivity(intent);
+            }
+
+
+
+        });
 
 
         return root;
