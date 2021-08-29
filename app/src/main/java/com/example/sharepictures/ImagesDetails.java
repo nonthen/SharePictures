@@ -64,12 +64,12 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
                 pictureId.setText(cursor.getString(0));
                 Imagesdetails.setText(cursor.getString(1));
                 likeSwitch=cursor.getInt(2);
-                if (likeSwitch==1){
+                if (likeSwitch==1){//喜欢
                     like.setImageResource(
                             R.drawable.love_red);
                 }else {
                     like.setImageResource(
-                            R.drawable.love_white);
+                            R.drawable.ic_baseline_favorite_border_24);
                 }
                 imagedata = cursor.getBlob(3);
                 imagebm = BitmapFactory.decodeByteArray(imagedata, 0, imagedata.length);
@@ -91,8 +91,9 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
                 }
                 else{
                     likeSwitch=0;//变成不喜欢
-                    like.setImageResource(
-                            R.drawable.love_white);
+//                    like.setImageResource(
+//                            R.drawable.love_white);
+                    like.setImageResource(R.drawable.ic_baseline_favorite_border_24);
                 }
 
                 values=ChangeLike(likeSwitch);

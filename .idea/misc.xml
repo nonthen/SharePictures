@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_arrow_downward_24.xml" value="0.215625" />
+        <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.215625" />
         <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_photo_camera_24.xml" value="0.215625" />
         <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_play_for_work_24.xml" value="0.215625" />
         <entry key="..\:/AndroidProject/Code/SharePictures/app/src/main/res/drawable/ic_baseline_portrait_24.xml" value="0.19635416666666666" />
