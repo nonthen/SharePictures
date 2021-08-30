@@ -1,14 +1,20 @@
 package com.example.sharepictures;
 
+import android.Manifest;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,8 +22,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.sharepictures.ui.home.HomeFragment;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class ImagesDetails extends AppCompatActivity {//图片信息详情
 
@@ -29,6 +42,7 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
     private Intent intent;
     private ContentValues values;
     private Cursor cursor;
+    private File appDir;//存储图片的文件夹
 
     private ImageView picture;//图片
     private TextView pictureId;//图片id
@@ -91,8 +105,6 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
                 }
                 else{
                     likeSwitch=0;//变成不喜欢
-//                    like.setImageResource(
-//                            R.drawable.love_white);
                     like.setImageResource(R.drawable.ic_baseline_favorite_border_24);
                 }
 
@@ -112,10 +124,10 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
         });
 
 
-        download.setOnClickListener(new View.OnClickListener() {//将图片保存下来
+        download.setOnClickListener(new View.OnClickListener() {//单击下载按钮保存图片
             @Override
             public void onClick(View view) {
-
+                saveImageToGallery(ImagesDetails.this,imagebm);
 
             }
         });
@@ -140,5 +152,74 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
         return valuestemp;
     }
 
+    public void saveImageToGallery(Context context, Bitmap bmp) {
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            int REQUEST_CODE_CONTACT = 101;
+            String[] permissions = {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            //验证是否许可权限
+            for (String str : permissions) {
+                if (ImagesDetails.this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                    //申请权限
+                    ImagesDetails.this.requestPermissions(permissions, REQUEST_CODE_CONTACT);
+                    return;
+                } else {
+                    //这里就是权限打开之后自己要操作的逻辑
+//                    appDir = new File(Environment.getExternalStorageDirectory(),//这种写法不被推荐使用
+//                            "SharePictures");//文件名
+                    appDir=new File(context.getExternalFilesDir(null).getPath()+"SharePictures");
+                    appDir.mkdir();
+                }
+            }
+        }
+
+        String fileName = System.currentTimeMillis() + ".jpg";
+//        File file = new File(appDir, fileName);
+        File file=new File(appDir+"/"+fileName);
+
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+
+        } catch (FileNotFoundException e) {
+
+            Toast.makeText(context, "保存失败1", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+        } catch (IOException e) {
+
+            Toast.makeText(context, "保存失败2",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+        }
+
+
+        // 其次把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(),
+                    file.getAbsolutePath(), fileName, null);
+            Toast.makeText(context, "保存成功",Toast.LENGTH_SHORT).show();
+
+        } catch (FileNotFoundException e) {
+
+            Toast.makeText(context, "保存失败3",Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        // 最后通知图库更新
+//        第一种方法
+//        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//        Uri uri = Uri.fromFile(file);
+//        intent.setData(uri);
+//        context.sendBroadcast(intent);
+//        Toast.makeText(context, "保存成功",Toast.LENGTH_SHORT).show();
+
+//        第二种方法
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                Uri.fromFile(new File(file.getPath()))));
+    }
 
 }

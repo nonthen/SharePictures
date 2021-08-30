@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="404dp"
-        android:layout_height="149dp"
+        android:layout_width="401dp"
+        android:layout_height="220dp"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="140dp"
-            android:layout_height="140dp" />
+            android:layout_width="207dp"
+            android:layout_height="209dp" />
     </LinearLayout>
 
     <TextView
