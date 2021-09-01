@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -136,6 +137,11 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
             @Override
             public void onClick(View view) {
 
+                Uri imageUri = Uri.parse(MediaStore.Images.Media.insertImage(
+                        ImagesDetails.this.getContentResolver(),imagebm, null, null));
+
+                shareImage(ImagesDetails.this,imageUri,"分享到……");
+
             }
         });
 
@@ -152,7 +158,7 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
         return valuestemp;
     }
 
-    public void saveImageToGallery(Context context, Bitmap bmp) {
+    public void saveImageToGallery(Context context, Bitmap bmp) {//保存图片
 
         if (Build.VERSION.SDK_INT >= 23) {
             int REQUEST_CODE_CONTACT = 101;
@@ -220,6 +226,16 @@ public class ImagesDetails extends AppCompatActivity {//图片信息详情
 //        第二种方法
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                 Uri.fromFile(new File(file.getPath()))));
+    }
+
+
+    public static void shareImage(Context context, Uri uri,String title) {//title为目标Activity提供一个标题
+        //分享图片
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);//分享图片的路径
+        shareIntent.setType("image/*");//分享内容为图片类型
+        context.startActivity(Intent.createChooser(shareIntent, title));
     }
 
 }

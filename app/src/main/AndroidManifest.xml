@@ -18,6 +18,7 @@
             android:label="@string/title_activity_bottom_navigation" />
         <activity android:name=".LoginActivity">
             <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
